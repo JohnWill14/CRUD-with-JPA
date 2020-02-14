@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
  */
 public class JPAUtil {
     private final static EntityManagerFactory emf=Persistence.createEntityManagerFactory("hibernate");
-    public EntityManager getEntityManager(){
+    public static EntityManager getEntityManager(){
         return emf.createEntityManager();
     }
 }
