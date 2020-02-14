@@ -50,6 +50,7 @@ public class ClienteDao implements IDao<ClienteBean>{
     }
 
     @Override
+    @SuppressWarnings("unchecked") 
     public List<ClienteBean> findAll() {
         ClienteDao.inicicializaEntityManager();
         em.getTransaction().begin();
