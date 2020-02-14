@@ -53,7 +53,7 @@ public class ClienteDao implements IDao<ClienteBean>{
     public List<ClienteBean> findAll() {
         ClienteDao.inicicializaEntityManager();
         em.getTransaction().begin();
-        Query query= em.createQuery("select c from Cliente c",ClienteBean.class);
+        Query query= em.createQuery("select c from ClienteBean c",ClienteBean.class);
         List<ClienteBean> lista=query.getResultList();
         ClienteDao.confirma();
         return lista;
@@ -62,24 +62,21 @@ public class ClienteDao implements IDao<ClienteBean>{
     @Override
     public ClienteBean getById(int id) {
         ClienteDao.inicicializaEntityManager();
-        ClienteBean bean=em.getReference(ClienteBean.class, id);
+        ClienteBean bean=em.find(ClienteBean.class, id);
         ClienteDao.confirma();
         return bean;
     }
 
     @Override
     public void remove(ClienteBean obj) {
-        ClienteDao.inicicializaEntityManager();
-        em.getTransaction().begin();
-        em.remove(obj);
-        ClienteDao.confirmaFrom();
+        removeId(obj.getId());
     }
 
     @Override
     public void removeId(int id) {
         ClienteDao.inicicializaEntityManager();
         em.getTransaction().begin();
-        ClienteBean obj=getById(id);
+        ClienteBean obj=em.find(ClienteBean.class, id);
         em.remove(obj);
         ClienteDao.confirmaFrom();
 
