@@ -17,23 +17,24 @@ import javax.persistence.Table;
  * @author usuario
  */
 @Entity
-@Table(name="tarefa")
-public class Tarefa {
+@Table(name = "cliente")
+public class ClienteBean {
     @Id
+    @Column(name = "idclien")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "nometare",length = 100,nullable = false)
+    @Column(name = "nomeclien",length = 100,nullable = true)
     private String nome;
-    @Column(name = "finalTare",nullable = true)
-    private boolean finalizado;
+    @Column(name = "cpfclien",length = 100,nullable = true)
+    private String cpf;
 
-    public Tarefa() {
+    public ClienteBean() {
     }
 
-    public Tarefa(int id, String nome, boolean finalizado) {
+    public ClienteBean(int id, String nome, String cpf) {
         this.id = id;
         this.nome = nome;
-        this.finalizado = finalizado;
+        this.cpf = cpf;
     }
 
     public int getId() {
@@ -52,12 +53,12 @@ public class Tarefa {
         this.nome = nome;
     }
 
-    public boolean isFinalizado() {
-        return finalizado;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setFinalizado(boolean finalizado) {
-        this.finalizado = finalizado;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
     
 }
